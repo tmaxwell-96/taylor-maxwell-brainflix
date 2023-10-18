@@ -1,11 +1,13 @@
 import "./App.scss";
-import "./styles/partials/_global.scss";
 import Header from "./components/Header/Header";
+import Video from "./components/Video/Video";
 
 function App() {
   return (
     <>
       <Header />
+
+      <Video />
     </>
   );
 }
