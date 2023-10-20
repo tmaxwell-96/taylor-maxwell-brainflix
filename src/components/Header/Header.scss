@@ -6,16 +6,31 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+
   &__button {
     background-color: $brainflix-primary-cta;
     font-family: "Avenir", Verdana, sans-serif;
     border: none;
     border-radius: 4px;
     width: 100%;
-    margin: 1rem 0 0 0;
     padding: 1rem 0;
     color: $brainflix-primary-light;
     font-weight: 700;
+    &wrapper {
+      margin-top: 1rem;
+      width: 100%;
+      position: relative;
+      max-height: 5.89rem;
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+    &-overlay {
+      position: absolute;
+      max-height: 5.89rem;
+      width: 100%;
+      padding-left: 0.5rem;
+    }
   }
 
   &__mid {
@@ -32,8 +47,9 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 1rem;
-    min-height: 2.25rem;
+    pointer-events: none;
+    height: 100%;
+    padding-left: 0.5rem;
 
     @include tablet {
     }
@@ -42,10 +58,19 @@
   &__searchbar {
     width: 100%;
     height: 2.25rem;
-    padding-left: 3rem;
+    padding-left: 2rem;
     background-color: $brainflix-secondary-light;
     border: 1px solid $brainflix-secondary-mid;
     border-radius: 4px;
+    &:focus {
+      outline: none;
+      border: 1px solid black;
+    }
+
+    &wrapper {
+      width: 100%;
+      position: relative;
+    }
   }
 
   &__profile {

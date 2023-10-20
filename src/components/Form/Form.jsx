@@ -1,4 +1,5 @@
 import "./Form.scss";
+import addCommentIcon from "../../assets/images/Icons/add_comment.svg";
 
 const Form = () => {
   return (
@@ -21,7 +22,19 @@ const Form = () => {
           id="form__comment"
           placeholder="Add a New Comment"
         ></textarea>
-        <button className="form__button">COMMENT</button>
+
+        {/* TODO: Style button to match above */}
+        {/* <button className="form__button">COMMENT</button> */}
+        <div className="form__buttonwrapper">
+          <div className="form__button-overlay">
+            <img
+              className="form__upload-icon"
+              src={addCommentIcon}
+              alt="upload icon"
+            />
+          </div>
+          <button className="form__button">Comment</button>
+        </div>
       </div>
     </form>
   );
