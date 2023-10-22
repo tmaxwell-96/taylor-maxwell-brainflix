@@ -7,19 +7,20 @@ const VideoDetails = (props) => {
     <div className="video__details">
       <h2 className="video__title">{props.selectedVideo.title}</h2>
       <div className="video__container">
-        <div className="video__container-top">
+        <div className="video__container-left">
           <h3 className="video__channel">By {props.selectedVideo.channel}</h3>
-          <div className="video__views">
-            <img src={viewIcon} alt="view icon" />
-            <p className="video__viewcount">{props.selectedVideo.views}</p>
-          </div>
-        </div>
-        <div className="video__container-bottom">
           <p className="video__date">
             {new Date(props.selectedVideo.timestamp).toLocaleDateString(
               "en-US"
             )}
           </p>
+        </div>
+        <div className="video__container-right">
+          <div className="video__views">
+            <img src={viewIcon} alt="view icon" />
+            <p className="video__viewcount">{props.selectedVideo.views}</p>
+          </div>
+
           <div className="video__likes">
             <img src={likeIcon} alt="like icon" />
             <p className="video__likecount">{props.selectedVideo.likes}</p>

@@ -9,22 +9,22 @@ const Form = () => {
       </div>
 
       <div className="form__right">
-        <label
-          htmlFor="form__comment"
-          name="commentText"
-          className="form__label"
-        >
-          JOIN THE CONVERSATION
-        </label>
-        <textarea
-          className="form__comment"
-          name="commentFormText"
-          id="form__comment"
-          placeholder="Add a New Comment"
-        ></textarea>
+        <div className="form__comment-wrapper">
+          <label
+            htmlFor="form__comment"
+            name="commentText"
+            className="form__label"
+          >
+            JOIN THE CONVERSATION
+          </label>
+          <textarea
+            className="form__comment"
+            name="commentFormText"
+            id="form__comment"
+            placeholder="Add a New Comment"
+          ></textarea>
+        </div>
 
-        {/* TODO: Style button to match above */}
-        {/* <button className="form__button">COMMENT</button> */}
         <div className="form__buttonwrapper">
           <div className="form__button-overlay">
             <img
@@ -33,7 +33,7 @@ const Form = () => {
               alt="upload icon"
             />
           </div>
-          <button className="form__button">Comment</button>
+          <button className="form__button">COMMENT</button>
         </div>
       </div>
     </form>

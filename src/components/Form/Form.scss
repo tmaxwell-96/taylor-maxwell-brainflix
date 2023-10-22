@@ -8,6 +8,11 @@
   margin-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid $brainflix-secondary-mid;
+  @include tablet {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
 
   &__left {
     display: flex;
@@ -23,6 +28,11 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
   }
 
   &__profile {
@@ -42,9 +52,11 @@
     color: $brainflix-primary-mid;
     margin-bottom: 0.25rem;
     font-size: 0.8125rem;
+    @include tablet {
+      align-self: flex-start;
+    }
   }
 
-  &__name,
   &__comment {
     font-size: 0.8125rem;
     width: 100%;
@@ -55,32 +67,27 @@
     background-color: $brainflix-secondary-light;
     color: $brainflix-secondary-dark;
     padding: 0.75rem;
+    height: 6rem;
+    &:focus {
+      outline: none;
+      border: 1px solid black;
+    }
     @include tablet {
-      padding: 1rem;
       font-size: 0.875rem;
+      margin: 0;
+      height: 3rem;
+    }
+    &-wrapper {
+      width: 100%;
+      @include tablet {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
     }
     &--error,
     &--error {
       border: 1px solid $brainflix-error-color;
-    }
-  }
-
-  &__name {
-    height: 2.5rem;
-    &:focus {
-      outline: none;
-      border: 1px solid black;
-    }
-    @include tablet {
-      height: 3rem;
-    }
-  }
-
-  &__comment {
-    height: 7.5rem;
-    &:focus {
-      outline: none;
-      border: 1px solid black;
     }
   }
 
@@ -97,13 +104,16 @@
     padding: 0.5rem 0;
     @include tablet {
       width: auto;
-      margin: 1rem 0;
       align-self: flex-end;
       padding: 0.5rem 3rem;
     }
     &wrapper {
       width: 100%;
       position: relative;
+      @include tablet {
+        width: auto;
+        margin: 0 0 0 1.5rem;
+      }
     }
     &-overlay {
       position: absolute;
@@ -112,6 +122,7 @@
       display: flex;
       align-items: center;
       padding-left: 0.5rem;
+      pointer-events: none;
     }
   }
 }

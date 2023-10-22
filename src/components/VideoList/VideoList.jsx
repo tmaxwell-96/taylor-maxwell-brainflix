@@ -6,7 +6,7 @@ const VideoList = (props) => {
     <div className="videolist">
       <h3 className="videolist__header">NEXT VIDEOS</h3>
       <div className="videolist__wrapper">
-        {props.videoDetails
+        {props.videoDetailsSimple
           .filter((video) => video.id !== props.selectedVideo.id)
           .map((video) => {
             return (

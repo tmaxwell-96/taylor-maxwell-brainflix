@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.scss";
+import videoDetailsSimple from "./data/videos.json";
 import videoDetails from "./data/video-details.json";
 import Header from "./components/Header/Header";
 import Video from "./components/Video/Video";
@@ -8,7 +9,8 @@ import VideoList from "./components/VideoList/VideoList";
 import VideoDetails from "./components/VideoDetails/VideoDetails";
 
 function App() {
-  const [selectedVideo, setSelectedVideo] = useState(videoDetails[0]);
+  const [videoData, setVideoData] = useState(videoDetails);
+  const [selectedVideo, setSelectedVideo] = useState(videoData[0]);
 
   // Event handler select video function
   //----------------------------------------
@@ -27,14 +29,14 @@ function App() {
     <>
       <Header />
 
-      <Video videoDetails={videoDetails} selectedVideo={selectedVideo} />
+      <Video selectedVideo={selectedVideo} />
 
       <VideoDetails videoDetails={videoDetails} selectedVideo={selectedVideo} />
 
       <Comments videoDetails={videoDetails} selectedVideo={selectedVideo} />
 
       <VideoList
-        videoDetails={videoDetails}
+        videoDetailsSimple={videoDetailsSimple}
         changeVideo={changeVideo}
         selectedVideo={selectedVideo}
       />

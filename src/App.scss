@@ -35,12 +35,10 @@ h2 {
 
 h3 {
   font-size: 0.875rem;
-  line-height: 1.375rem;
   font-weight: 550;
   margin: 0;
   @include tablet {
     font-size: 1.5rem;
-    line-height: 2rem;
     font-weight: 600;
   }
 }

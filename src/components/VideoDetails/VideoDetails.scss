@@ -4,26 +4,52 @@
 .video {
   &__details {
     padding: 1rem;
+    @include tablet {
+      padding: 2rem;
+    }
   }
 
   &__title {
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 1.5;
     line-height: 1.25;
     padding-bottom: 1rem;
     border-bottom: 2px solid $brainflix-secondary-mid;
+    @include tablet {
+      border: none;
+      padding-bottom: 0;
+      font-weight: 700;
+    }
+  }
+
+  &__date {
+    color: $brainflix-primary-mid;
   }
 
   &__container {
     border-bottom: 2px solid $brainflix-secondary-mid;
     padding-bottom: 1rem;
-    &-top,
-    &-bottom {
-      margin-top: 1rem;
-      width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 4rem;
+    margin-top: 1rem;
+    @include tablet {
+      padding-right: 0;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+    }
+    &-left,
+    &-right {
       display: flex;
-      align-items: flex-start;
+      flex-direction: column;
       justify-content: space-between;
+      @include tablet {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: auto;
+        align-items: flex-end;
+      }
     }
   }
 
@@ -34,13 +60,39 @@
     min-width: 40%;
     display: flex;
     align-items: flex-start;
+    @include tablet {
+      width: auto;
+      align-items: flex-end;
+    }
   }
   &__viewcount,
   &__likecount {
     margin: 0 0 0 0.5rem;
+    color: $brainflix-primary-mid;
   }
 
   &__description {
     margin-top: 1rem;
+  }
+
+  &__channel,
+  &__views {
+    height: 1.375rem;
+    @include tablet {
+      height: 2rem;
+      margin: 0 2rem 0 0;
+    }
+  }
+
+  &__channel {
+    @include tablet {
+      font-size: 1rem;
+      height: auto;
+    }
+  }
+
+  &__channel &__likes,
+  &__date {
+    margin: 1rem 0 0 0;
   }
 }

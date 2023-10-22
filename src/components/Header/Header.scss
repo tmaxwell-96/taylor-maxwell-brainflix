@@ -6,6 +6,17 @@
   flex-direction: column;
   align-items: center;
   padding: 2rem;
+  @include tablet {
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 1rem 2rem;
+  }
+
+  &__logo {
+    @include tablet {
+      margin-right: auto;
+    }
+  }
 
   &__button {
     background-color: $brainflix-primary-cta;
@@ -15,7 +26,14 @@
     width: 100%;
     padding: 1rem 0;
     color: $brainflix-primary-light;
-    font-weight: 700;
+    font-weight: 600;
+    @include tablet {
+      width: auto;
+      padding: 0.5rem 3rem;
+      font-size: 1.25rem;
+      height: 3rem;
+      margin-right: 1rem;
+    }
     &wrapper {
       margin-top: 1rem;
       width: 100%;
@@ -24,12 +42,22 @@
       display: flex;
       align-items: center;
       pointer-events: none;
+      @include tablet {
+        width: auto;
+        margin: 0 0 0 1rem;
+      }
     }
     &-overlay {
       position: absolute;
       max-height: 5.89rem;
       width: 100%;
       padding-left: 0.5rem;
+    }
+  }
+
+  &__bottom {
+    @include tablet {
+      width: auto;
     }
   }
 
@@ -40,6 +68,10 @@
     margin: 1rem 0 0 0;
     width: 100%;
     position: relative;
+    @include tablet {
+      width: auto;
+      margin: 0;
+    }
   }
 
   &__overlay {
@@ -62,6 +94,11 @@
     background-color: $brainflix-secondary-light;
     border: 1px solid $brainflix-secondary-mid;
     border-radius: 4px;
+    @include tablet {
+      min-width: 13rem;
+      height: 3rem;
+      margin-right: 1rem;
+    }
     &:focus {
       outline: none;
       border: 1px solid black;
@@ -70,6 +107,10 @@
     &wrapper {
       width: 100%;
       position: relative;
+      @include tablet {
+        width: 12rem;
+        margin-right: 1rem;
+      }
     }
   }
 
@@ -84,6 +125,17 @@
     @include tablet {
       height: 3rem;
       min-width: 3rem;
+    }
+    &--wide {
+      display: none;
+      @include tablet {
+        display: inline-block;
+      }
+    }
+    &--mobile {
+      @include tablet {
+        display: none;
+      }
     }
   }
 }

@@ -4,6 +4,9 @@
 .video {
   &__image {
     width: 100%;
-    border: 2px solid black;
+    @include tablet {
+      padding: 0 2rem;
+      background-color: $brainflix-secondary-dark;
+    }
   }
 }

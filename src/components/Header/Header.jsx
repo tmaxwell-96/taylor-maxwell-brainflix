@@ -7,7 +7,7 @@ function Header() {
   return (
     <header className="header">
       <nav className="nav">
-        <img src={logo} className="nav__search-icon" alt="BrainFlix logo" />
+        <img src={logo} className="nav__logo" alt="BrainFlix logo" />
         <div className="nav__mid">
           <div className="nav__searchbarwrapper">
             <div className="nav__overlay">
@@ -20,7 +20,7 @@ function Header() {
               placeholder=" Search"
             ></input>
           </div>
-          <div className="nav__profile"></div>
+          <div className="nav__profile nav__profile--mobile"></div>
         </div>
         <div className="nav__buttonwrapper">
           <div className="nav__button-overlay">
@@ -30,7 +30,8 @@ function Header() {
               alt="upload icon"
             />
           </div>
-          <button className="nav__button">Upload</button>
+          <button className="nav__button">UPLOAD</button>
+          <div className="nav__profile nav__profile--wide"></div>
         </div>
       </nav>
     </header>
