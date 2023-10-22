@@ -1,17 +1,23 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
 
-.videolist {
-  &__card {
-    display: flex;
-    justify-content: space-between;
-    margin: 1rem 0;
-    width: 100%;
+.videolistcard {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  width: 100%;
+  @include tablet {
+    justify-content: flex-start;
   }
 
   &__image-container {
     height: 4rem;
     width: 6rem;
+    background-color: $brainflix-secondary-mid;
+    @include tablet {
+      height: 4.75rem;
+      width: 8rem;
+    }
   }
   &__image {
     height: 100%;
@@ -25,8 +31,18 @@
     justify-content: space-between;
     margin-left: 1rem;
     width: 60%;
+    @include tablet {
+      width: 12rem;
+    }
   }
   &__title {
     font-weight: 700;
+  }
+
+  &__title,
+  &__channel {
+    @include tablet {
+      font-size: 0.875rem;
+    }
   }
 }
