@@ -56,7 +56,7 @@ p {
   @include desktop {
     display: flex;
     &__left {
-      border-right: 2px solid $brainflix-primary-mid;
+      border-right: 2px solid $brainflix-secondary-mid;
     }
   }
 }

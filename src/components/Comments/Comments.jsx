@@ -11,7 +11,13 @@ const Comments = (props) => {
       <Form />
       <div className="comments__container">
         {props.selectedVideo.comments.map((comment) => {
-          return <Comment key={comment.id} comment={comment} />;
+          return (
+            <Comment
+              calculateTimeAgo={props.calculateTimeAgo}
+              key={comment.id}
+              comment={comment}
+            />
+          );
         })}
       </div>
     </div>

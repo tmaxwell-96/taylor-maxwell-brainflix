@@ -10,8 +10,10 @@ const VideoDetails = (props) => {
         <div className="video__container-left">
           <h3 className="video__channel">By {props.selectedVideo.channel}</h3>
           <p className="video__date">
-            {new Date(props.selectedVideo.timestamp).toLocaleDateString(
-              "en-US"
+            {props.calculateTimeAgo(
+              new Date(props.selectedVideo.timestamp).toLocaleDateString(
+                "en-US"
+              )
             )}
           </p>
         </div>

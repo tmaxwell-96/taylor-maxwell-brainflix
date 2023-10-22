@@ -10,7 +10,9 @@ const Comment = (props) => {
         <div className="comment__right-top">
           <p className="comment__name">{props.comment.name}</p>
           <p className="comment__date">
-            {new Date(props.comment.timestamp).toLocaleDateString("en-US")}
+            {props.calculateTimeAgo(
+              new Date(props.comment.timestamp).toLocaleDateString("en-US")
+            )}
           </p>
         </div>
         <p className="comment__text">{props.comment.comment}</p>
