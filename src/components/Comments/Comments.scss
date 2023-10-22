@@ -3,4 +3,11 @@
 
 .comments {
   padding: 1rem;
+  @include desktop {
+    padding: 1rem 0 1rem 7rem;
+  }
+
+  &__number {
+    font-size: 0.875rem;
+  }
 }

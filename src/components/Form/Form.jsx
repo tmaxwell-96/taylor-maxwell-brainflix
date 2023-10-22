@@ -1,9 +1,14 @@
 import "./Form.scss";
 import addCommentIcon from "../../assets/images/Icons/add_comment.svg";
 
+// Added just to prevent page refresh if click form button
 const Form = () => {
+  const preventFormRefresh = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <form className="form">
+    <form className="form" onSubmit={preventFormRefresh}>
       <div className="form__left">
         <div className="form__profile"></div>
       </div>

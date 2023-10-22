@@ -51,3 +51,12 @@ p {
     line-height: 1.25;
   }
 }
+
+.details {
+  @include desktop {
+    display: flex;
+    &__left {
+      border-right: 2px solid $brainflix-primary-mid;
+    }
+  }
+}

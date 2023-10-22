@@ -1,13 +1,10 @@
 import "./VideoListCard.scss";
 
 const VideoListCard = (props) => {
-  // console.log(props.videoDetails[0].image);
-  // console.log(props.changeVideo);
   return (
     <div
       onClick={() => {
         return props.changeVideo(props.video.id);
-        // return console.log(props.video.id);
       }}
       className="videolistcard"
     >

@@ -3,6 +3,9 @@
 
 .videolist {
   padding: 1rem;
+  @include desktop {
+    padding-right: 7rem;
+  }
 
   &__header {
     color: $brainflix-primary-mid;

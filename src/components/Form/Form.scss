@@ -7,11 +7,14 @@
   align-items: flex-start;
   margin-top: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid $brainflix-secondary-mid;
+  border-bottom: 1px solid $brainflix-primary-mid;
   @include tablet {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+  }
+  @include desktop {
+    padding: 0 1rem 1rem 1rem;
   }
 
   &__left {
@@ -77,6 +80,7 @@
       margin: 0;
       height: 3rem;
     }
+
     &-wrapper {
       width: 100%;
       @include tablet {
@@ -107,6 +111,7 @@
       align-self: flex-end;
       padding: 0.5rem 3rem;
     }
+
     &wrapper {
       width: 100%;
       position: relative;
@@ -115,6 +120,7 @@
         margin: 0 0 0 1.5rem;
       }
     }
+
     &-overlay {
       position: absolute;
       width: 100%;

@@ -10,6 +10,8 @@ import VideoDetails from "./components/VideoDetails/VideoDetails";
 
 function App() {
   const [videoData, setVideoData] = useState(videoDetails);
+  // setVideoData never used as awaiting dynamic population in other sprints
+
   const [selectedVideo, setSelectedVideo] = useState(videoData[0]);
 
   // Event handler select video function
@@ -19,27 +21,32 @@ function App() {
     const foundVideo = videoDetails.find(
       (videoObject) => videoObject.id === displayedVideoId
     );
-    // console.log(displayedVideo);
     setSelectedVideo(foundVideo);
   }
 
   return (
-    // TODO: add sections or divs around the components
-    //TODO: consider making the button into a component
     <>
       <Header />
 
       <Video selectedVideo={selectedVideo} />
 
-      <VideoDetails videoDetails={videoDetails} selectedVideo={selectedVideo} />
+      <div className="details">
+        <div className="details__left">
+          <VideoDetails
+            videoDetails={videoDetails}
+            selectedVideo={selectedVideo}
+          />
 
-      <Comments videoDetails={videoDetails} selectedVideo={selectedVideo} />
-
-      <VideoList
-        videoDetailsSimple={videoDetailsSimple}
-        changeVideo={changeVideo}
-        selectedVideo={selectedVideo}
-      />
+          <Comments videoDetails={videoDetails} selectedVideo={selectedVideo} />
+        </div>
+        <div className="details__right">
+          <VideoList
+            videoDetailsSimple={videoDetailsSimple}
+            changeVideo={changeVideo}
+            selectedVideo={selectedVideo}
+          />
+        </div>
+      </div>
     </>
   );
 }
