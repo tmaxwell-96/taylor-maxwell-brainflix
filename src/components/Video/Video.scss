@@ -7,11 +7,12 @@
     background-color: $brainflix-secondary-dark;
     @include tablet {
       padding: 0 2rem;
-      height: 24rem;
+      height: 25rem;
+      object-fit: cover;
     }
     @include desktop {
       padding: 0 12rem;
-      height: 30rem;
+      max-height: 30rem;
     }
   }
 }
