@@ -19,11 +19,7 @@ function HomePage() {
 
   const getVideoList = async () => {
     const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-    const detailResponse = await axios.get(
-      `${baseUrl}/videos/84e96018-4022-434e-80bf-000ce4cd12b8?api_key=${apiKey}`
-    );
     setVideoList(response.data);
-    setSpecificVideoDetails(detailResponse.data);
   };
 
   useEffect(() => {
@@ -32,14 +28,19 @@ function HomePage() {
 
   useEffect(() => {
     const getVideoDetails = async () => {
-      const response = await axios.get(
-        `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
-      );
-      setSpecificVideoDetails(response.data);
+      if (params.videoId) {
+        const response = await axios.get(
+          `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
+        );
+        setSpecificVideoDetails(response.data);
+      } else {
+        const response = await axios.get(
+          `${baseUrl}/videos/84e96018-4022-434e-80bf-000ce4cd12b8?api_key=${apiKey}`
+        );
+        setSpecificVideoDetails(response.data);
+      }
     };
-    if (params.videoId) {
-      getVideoDetails();
-    }
+    getVideoDetails();
   }, [params.videoId]);
 
   // Dynamic Timestamp Function

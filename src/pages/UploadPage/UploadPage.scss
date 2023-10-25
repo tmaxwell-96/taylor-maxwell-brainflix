@@ -1,0 +1,148 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.upload {
+  padding: 1rem;
+  &__header {
+    font-size: 2.0625rem;
+    font-weight: 600;
+  }
+
+  &__thumbnail {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  .form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $brainflix-secondary-mid;
+    @include tablet {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    @include desktop {
+      padding: 0 1rem 1rem 1rem;
+    }
+
+    &__left {
+      display: flex;
+      justify-content: flex-start;
+      width: auto;
+      height: 100%;
+      margin: 1.3rem 1rem 0 0;
+    }
+
+    &__right {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+    }
+
+    &__profile {
+      height: 2.25rem;
+      width: 2.25rem;
+      border-radius: 50%;
+      background-image: url(../../assets/images/Mohan-muruge.jpg);
+      background-size: cover;
+      background-position: center;
+      @include tablet {
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+
+    &__label {
+      color: $brainflix-primary-mid;
+      margin-bottom: 0.25rem;
+      font-size: 0.8125rem;
+      @include tablet {
+        align-self: flex-start;
+      }
+    }
+
+    &__comment,
+    &__title {
+      font-size: 0.8125rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      font-family: "Avenir", Verdana, sans-serif;
+      border: 1px solid $brainflix-secondary-mid;
+      border-radius: 4px;
+      background-color: $brainflix-secondary-light;
+      color: $brainflix-secondary-dark;
+      padding: 0.75rem;
+      height: 6rem;
+      &:focus {
+        outline: none;
+        border: 1px solid black;
+      }
+      @include tablet {
+        font-size: 0.875rem;
+        margin: 0;
+        height: 3rem;
+      }
+
+      &-wrapper {
+        width: 100%;
+        @include tablet {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+      }
+      &--error,
+      &--error {
+        border: 1px solid $brainflix-error-color;
+      }
+    }
+
+    &__button {
+      font-size: 0.875rem;
+      line-height: 2rem;
+      font-weight: 550;
+      width: 100%;
+      color: $brainflix-primary-light;
+      text-align: center;
+      background-color: $brainflix-primary-cta;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 0;
+      @include tablet {
+        width: auto;
+        align-self: flex-end;
+        padding: 0.5rem 3rem;
+      }
+
+      &wrapper {
+        width: 100%;
+        position: relative;
+        @include tablet {
+          width: auto;
+          margin: 0 0 0 1.5rem;
+        }
+      }
+
+      &-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding-left: 0.5rem;
+        pointer-events: none;
+      }
+    }
+  }
+}
