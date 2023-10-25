@@ -1,16 +1,8 @@
 import "./VideoListCard.scss";
-import { useParams } from "react-router-dom";
 
 const VideoListCard = (props) => {
-  const params = useParams();
-  // console.log(params);
   return (
-    <div
-      onClick={() => {
-        return props.changeVideo(props.video.id);
-      }}
-      className="videolistcard"
-    >
+    <div className="videolistcard">
       <div className="videolistcard__image-container">
         <img
           className="videolistcard__image"

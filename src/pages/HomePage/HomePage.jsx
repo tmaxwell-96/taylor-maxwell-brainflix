@@ -1,27 +1,29 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import "./HomePage.scss";
-// import videoDetailsSimple from "../../data/videos.json";
-import videoDetails from "../../data/video-details.json";
 import Video from "../../components/Video/Video";
 import Comments from "../../components/Comments/Comments";
 import VideoList from "../../components/VideoList/VideoList";
 import VideoDetails from "../../components/VideoDetails/VideoDetails";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const baseUrl = "https://project-2-api.herokuapp.com";
 const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
 function HomePage() {
   const params = useParams();
+
   //setting state to get the videolist
   const [videoList, setVideoList] = useState([]);
   const [specificVideoDetails, setSpecificVideoDetails] = useState({});
 
   const getVideoList = async () => {
     const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-    // console.log(response);
+    const detailResponse = await axios.get(
+      `${baseUrl}/videos/84e96018-4022-434e-80bf-000ce4cd12b8?api_key=${apiKey}`
+    );
     setVideoList(response.data);
+    setSpecificVideoDetails(detailResponse.data);
   };
 
   useEffect(() => {
@@ -31,29 +33,14 @@ function HomePage() {
   useEffect(() => {
     const getVideoDetails = async () => {
       const response = await axios.get(
-        `${baseUrl}/videos/84e96018-4022-434e-80bf-000ce4cd12b8?api_key=${apiKey}`
+        `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
       );
       setSpecificVideoDetails(response.data);
     };
-    getVideoDetails();
-  }, []);
-
-  //old videodetails values, to be deleted
-  const [videoData, setVideoData] = useState(videoDetails);
-
-  // setVideoData never used as awaiting dynamic population in other sprints
-
-  const [selectedVideo, setSelectedVideo] = useState(videoData[0]);
-
-  // Event handler select video function
-  //----------------------------------------
-
-  function changeVideo(displayedVideoId) {
-    const foundVideo = videoDetails.find(
-      (videoObject) => videoObject.id === displayedVideoId
-    );
-    setSelectedVideo(foundVideo);
-  }
+    if (params.videoId) {
+      getVideoDetails();
+    }
+  }, [params.videoId]);
 
   // Dynamic Timestamp Function
   //----------------------------------------
@@ -106,41 +93,36 @@ function HomePage() {
   }
 
   return (
-    <>
-      <div>
-        {specificVideoDetails.id && (
-          <>
-            <Video selectedVideo={selectedVideo} />
-
+    <div>
+      {specificVideoDetails.id && (
+        <>
+          <Video selectedVideo={specificVideoDetails} />
+          <div className="details">
             <div className="details__left">
               <VideoDetails
-                videoDetails={specificVideoDetails}
-                selectedVideo={selectedVideo}
+                selectedVideo={specificVideoDetails}
                 calculateTimeAgo={calculateTimeAgo}
               />
 
               <Comments
                 calculateTimeAgo={calculateTimeAgo}
-                videoDetails={specificVideoDetails}
-                selectedVideo={selectedVideo}
+                selectedVideo={specificVideoDetails}
               />
             </div>
-          </>
-        )}
-      </div>
-
-      <div className="details">
-        {videoList[0] && (
-          <div className="details__right">
-            <VideoList
-              videoDetailsSimple={videoList}
-              changeVideo={changeVideo}
-              selectedVideo={selectedVideo}
-            />
+            <div>
+              {videoList[0] && (
+                <div className="details__right">
+                  <VideoList
+                    videoDetailsSimple={videoList}
+                    selectedVideo={specificVideoDetails}
+                  />
+                </div>
+              )}
+            </div>
           </div>
-        )}
-      </div>
-    </>
+        </>
+      )}
+    </div>
   );
 }
 
