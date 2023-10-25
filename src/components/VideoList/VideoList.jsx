@@ -1,5 +1,6 @@
 import "./VideoList.scss";
 import VideoListCard from "../VideoListCard/VideoListCard";
+import { Link } from "react-router-dom";
 
 const VideoList = (props) => {
   return (
@@ -10,11 +11,17 @@ const VideoList = (props) => {
           .filter((video) => video.id !== props.selectedVideo.id)
           .map((video) => {
             return (
-              <VideoListCard
+              <Link
                 key={video.id}
-                changeVideo={props.changeVideo}
-                video={video}
-              />
+                to={`/${video.id}`}
+                className="videolist__child"
+              >
+                <VideoListCard
+                  key={video.id}
+                  changeVideo={props.changeVideo}
+                  video={video}
+                />
+              </Link>
             );
           })}
       </div>

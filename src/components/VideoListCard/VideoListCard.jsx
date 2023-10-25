@@ -1,6 +1,9 @@
 import "./VideoListCard.scss";
+import { useParams } from "react-router-dom";
 
 const VideoListCard = (props) => {
+  const params = useParams();
+  // console.log(params);
   return (
     <div
       onClick={() => {

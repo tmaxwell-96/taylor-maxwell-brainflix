@@ -11,7 +11,7 @@ const UploadPage = () => {
         <img
           className="upload__thumbnail"
           src={thumbnail}
-          alt="upload image thumbnail"
+          alt="upload  thumbnail"
         />
       </div>
       <form className="upload__form">

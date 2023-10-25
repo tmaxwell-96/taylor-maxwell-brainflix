@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/Logo/BrainFlix-logo.svg";
 import searchIcon from "../../assets/images/Icons/search.svg";
 import uploadIcon from "../../assets/images/Icons/upload.svg";
@@ -7,7 +8,9 @@ function Header() {
   return (
     <header className="header">
       <nav className="nav">
-        <img src={logo} className="nav__logo" alt="BrainFlix logo" />
+        <Link to="/" className="nav__logo">
+          <img src={logo} alt="BrainFlix logo" />
+        </Link>
         <div className="nav__mid">
           <div className="nav__searchbarwrapper">
             <div className="nav__overlay">
@@ -22,7 +25,7 @@ function Header() {
           </div>
           <div className="nav__profile nav__profile--mobile"></div>
         </div>
-        <div className="nav__buttonwrapper">
+        <Link className="nav__link" to="/upload">
           <div className="nav__button-overlay">
             <img
               className="nav__upload-icon"
@@ -32,7 +35,7 @@ function Header() {
           </div>
           <button className="nav__button">UPLOAD</button>
           <div className="nav__profile nav__profile--wide"></div>
-        </div>
+        </Link>
       </nav>
     </header>
   );

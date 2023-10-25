@@ -16,8 +16,23 @@
   }
 
   &__logo {
+    display: inline-block;
     @include tablet {
       margin-right: auto;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    margin-top: 1rem;
+    width: 100%;
+    position: relative;
+    max-height: 5.89rem;
+    display: flex;
+    align-items: center;
+    @include tablet {
+      width: auto;
+      margin: 0 0 0 1rem;
     }
   }
 
@@ -37,20 +52,6 @@
       height: 3rem;
       margin-right: 1rem;
       font-size: 0.875rem;
-    }
-
-    &wrapper {
-      margin-top: 1rem;
-      width: 100%;
-      position: relative;
-      max-height: 5.89rem;
-      display: flex;
-      align-items: center;
-      pointer-events: none;
-      @include tablet {
-        width: auto;
-        margin: 0 0 0 1rem;
-      }
     }
 
     &-overlay {

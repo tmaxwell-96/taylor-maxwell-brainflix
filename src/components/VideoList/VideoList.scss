@@ -11,4 +11,9 @@
     color: $brainflix-primary-mid;
     font-size: 0.875rem;
   }
+
+  &__child {
+    text-decoration: none;
+    color: inherit;
+  }
 }
