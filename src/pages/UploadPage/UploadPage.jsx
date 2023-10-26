@@ -25,7 +25,7 @@ const UploadPage = () => {
               TITLE YOUR VIDEO
             </label>
             <textarea
-              className="form__titles"
+              className="form__title"
               name="commentFormText"
               id="form__comment"
               placeholder="Add a title to your video"

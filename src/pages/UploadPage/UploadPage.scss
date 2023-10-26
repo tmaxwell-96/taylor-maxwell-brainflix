@@ -83,7 +83,6 @@
       background-color: $brainflix-secondary-light;
       color: $brainflix-secondary-dark;
       padding: 0.75rem;
-      height: 6rem;
       &:focus {
         outline: none;
         border: 1px solid black;
@@ -92,6 +91,10 @@
         font-size: 0.875rem;
         margin: 0;
         height: 3rem;
+      }
+
+      &__title {
+        height: 1rem;
       }
 
       &-wrapper {

@@ -14,17 +14,8 @@ function HomePage() {
   const params = useParams();
 
   //setting state to get the videolist
-  const [videoList, setVideoList] = useState([]);
+
   const [specificVideoDetails, setSpecificVideoDetails] = useState({});
-
-  const getVideoList = async () => {
-    const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-    setVideoList(response.data);
-  };
-
-  useEffect(() => {
-    getVideoList();
-  }, []);
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -34,10 +25,11 @@ function HomePage() {
         );
         setSpecificVideoDetails(response.data);
       } else {
-        const response = await axios.get(
-          `${baseUrl}/videos/84e96018-4022-434e-80bf-000ce4cd12b8?api_key=${apiKey}`
+        const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+        const detailResponse = await axios.get(
+          `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
         );
-        setSpecificVideoDetails(response.data);
+        setSpecificVideoDetails(detailResponse.data);
       }
     };
     getVideoDetails();
@@ -111,14 +103,12 @@ function HomePage() {
               />
             </div>
             <div>
-              {videoList[0] && (
-                <div className="details__right">
-                  <VideoList
-                    videoDetailsSimple={videoList}
-                    selectedVideo={specificVideoDetails}
-                  />
-                </div>
-              )}
+              <div className="details__right">
+                <VideoList
+                  // videoDetailsSimple={videoList}
+                  selectedVideo={specificVideoDetails}
+                />
+              </div>
             </div>
           </div>
         </>
