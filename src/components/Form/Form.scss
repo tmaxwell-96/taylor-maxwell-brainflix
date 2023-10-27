@@ -60,7 +60,8 @@
     }
   }
 
-  &__comment {
+  &__comment,
+  &__name {
     font-size: 0.8125rem;
     width: 100%;
     margin-bottom: 1rem;
@@ -93,6 +94,10 @@
     &--error {
       border: 1px solid $brainflix-error-color;
     }
+  }
+
+  &__name {
+    margin-bottom: 1rem;
   }
 
   &__button {

@@ -14,6 +14,7 @@ function HomePage() {
   const params = useParams();
 
   //setting state to get the videolist
+  //----------------------------------------
 
   const [specificVideoDetails, setSpecificVideoDetails] = useState({});
 
@@ -34,6 +35,38 @@ function HomePage() {
     };
     getVideoDetails();
   }, [params.videoId]);
+
+  //Post comments function
+  //----------------------------------------
+
+  const createComment = async (event) => {
+    const newComment = {
+      name: event.target.commentFormName.value,
+      comment: event.target.commentFormText.value,
+    };
+    console.log(newComment);
+    const postComment = async (newComment, dynamicUrl) => {
+      const post = await axios.post(
+        `${baseUrl}/videos/${dynamicUrl}/comments?api_key=${apiKey}`,
+        newComment
+      );
+    };
+    if (params.videoId) {
+      await postComment(newComment, params.videoId);
+      const response = await axios.get(
+        `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
+      );
+      setSpecificVideoDetails(response.data);
+    } else {
+      const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+      await postComment(newComment, response.data[0].id);
+
+      const detailResponse = await axios.get(
+        `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
+      );
+      setSpecificVideoDetails(detailResponse.data);
+    }
+  };
 
   // Dynamic Timestamp Function
   //----------------------------------------
@@ -100,6 +133,7 @@ function HomePage() {
               <Comments
                 calculateTimeAgo={calculateTimeAgo}
                 selectedVideo={specificVideoDetails}
+                createComment={createComment}
               />
             </div>
             <div>
