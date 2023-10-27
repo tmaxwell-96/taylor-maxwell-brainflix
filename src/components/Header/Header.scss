@@ -45,6 +45,9 @@
     padding: 1rem 0;
     color: $brainflix-primary-light;
     font-weight: 600;
+    &:hover {
+      background-color: $brainflix-secondary-cta;
+    }
     @include tablet {
       width: auto;
       padding: 0.5rem 3.5rem;
@@ -59,6 +62,7 @@
       max-height: 5.89rem;
       width: 100%;
       padding-left: 0.5rem;
+      pointer-events: none;
     }
   }
 
@@ -89,7 +93,7 @@
     pointer-events: none;
     height: 100%;
     padding-left: 0.5rem;
-
+    pointer-events: none;
     @include tablet {
     }
   }
