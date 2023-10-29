@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.form {
+.comments-form {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -72,9 +72,16 @@
     color: $brainflix-secondary-dark;
     padding: 0.75rem;
     height: 6rem;
+    &--error,
+    &--error {
+      border: 1px solid $brainflix-error-color;
+    }
     &:focus {
       outline: none;
-      border: 1px solid black;
+      border: 1px solid $brainflix-primary-cta;
+    }
+    &::placeholder {
+      color: black;
     }
     @include tablet {
       font-size: 0.875rem;

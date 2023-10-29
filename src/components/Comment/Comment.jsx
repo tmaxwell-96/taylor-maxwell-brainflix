@@ -1,6 +1,6 @@
 import "./Comment.scss";
 
-const Comment = (props) => {
+const Comment = ({ comment, calculateTimeAgo }) => {
   return (
     <div className="comment">
       <div className="comment__left">
@@ -8,12 +8,16 @@ const Comment = (props) => {
       </div>
       <div className="comment__right">
         <div className="comment__right-top">
-          <p className="comment__name">{props.comment.name}</p>
+          <p className="comment__name">{comment.name}</p>
           <p className="comment__date">
-            {props.calculateTimeAgo(new Date(props.comment.timestamp))}
+            {calculateTimeAgo(new Date(comment.timestamp))}
           </p>
         </div>
-        <p className="comment__text">{props.comment.comment}</p>
+
+        <p className="comment__text">{comment.comment}</p>
+        <div className="comment__right-bottom">
+          <button className="comment__delete">Delete</button>
+        </div>
       </div>
     </div>
   );

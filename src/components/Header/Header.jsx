@@ -12,14 +12,14 @@ function Header() {
           <img src={logo} alt="BrainFlix logo" />
         </Link>
         <div className="nav__mid">
-          <div className="nav__searchbarwrapper">
+          <div className="nav__search-bar-wrapper">
             <div className="nav__overlay">
               <img src={searchIcon} alt="search icon" />
             </div>
             <input
               name="searchbar"
               type="text"
-              className="nav__searchbar"
+              className="nav__search-bar"
               placeholder=" Search"
             ></input>
           </div>

@@ -80,6 +80,13 @@
       font-family: "Avenir", Verdana, sans-serif;
       padding: 0.5rem;
       font-size: 0.8125rem;
+      &::placeholder {
+        color: black;
+      }
+      &:focus {
+        outline: none;
+        border: 1px solid $brainflix-primary-cta;
+      }
     }
 
     &__title {

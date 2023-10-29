@@ -1,19 +1,19 @@
 import "./VideoListCard.scss";
 
-const VideoListCard = (props) => {
+const VideoListCard = ({ video }) => {
   return (
-    <div className="videolistcard">
-      <div className="videolistcard__image-container">
+    <div className="videolist-card">
+      <div className="videolist-card__image-container">
         <img
-          className="videolistcard__image"
-          src={props.video.image}
-          alt={props.video.title}
+          className="videolist-card__image"
+          src={video.image}
+          alt={video.title}
         />
       </div>
 
-      <div className="videolistcard__details">
-        <p className="videolistcard__title">{props.video.title}</p>
-        <p className="videolistcard__channel">{props.video.channel}</p>
+      <div className="videolist-card__details">
+        <p className="videolist-card__title">{video.title}</p>
+        <p className="videolist-card__channel">{video.channel}</p>
       </div>
     </div>
   );

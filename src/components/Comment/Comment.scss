@@ -70,4 +70,22 @@
   &__date {
     color: $brainflix-primary-mid;
   }
+
+  &__right-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 0 0 0;
+  }
+
+  &__delete {
+    margin: 0;
+    font-family: "Avenir", Verdana, sans-serif;
+    padding: 0.5rem 1rem;
+    color: $brainflix-primary-light;
+    background-color: $brainflix-primary-dark;
+    border: 0;
+    border-radius: 4px;
+  }
 }

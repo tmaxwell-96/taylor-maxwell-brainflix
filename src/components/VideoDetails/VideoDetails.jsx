@@ -2,35 +2,33 @@ import "./VideoDetails.scss";
 import viewIcon from "../../assets/images/Icons/views.svg";
 import likeIcon from "../../assets/images/Icons/likes.svg";
 
-const VideoDetails = (props) => {
+const VideoDetails = ({ selectedVideo, calculateTimeAgo }) => {
   return (
-    <div className="video__details">
-      <h2 className="video__title">{props.selectedVideo.title}</h2>
+    <section className="video__details">
+      <h2 className="video__title">{selectedVideo.title}</h2>
       <div className="video__container">
         <div className="video__container-left">
-          <h3 className="video__channel">By {props.selectedVideo.channel}</h3>
+          <h3 className="video__channel">By {selectedVideo.channel}</h3>
           <p className="video__date">
-            {props.calculateTimeAgo(
-              new Date(props.selectedVideo.timestamp).toLocaleDateString(
-                "en-US"
-              )
+            {calculateTimeAgo(
+              new Date(selectedVideo.timestamp).toLocaleDateString("en-US")
             )}
           </p>
         </div>
         <div className="video__container-right">
           <div className="video__views">
             <img src={viewIcon} alt="view icon" />
-            <p className="video__viewcount">{props.selectedVideo.views}</p>
+            <p className="video__viewcount">{selectedVideo.views}</p>
           </div>
 
           <div className="video__likes">
             <img src={likeIcon} alt="like icon" />
-            <p className="video__likecount">{props.selectedVideo.likes}</p>
+            <p className="video__likecount">{selectedVideo.likes}</p>
           </div>
         </div>
       </div>
-      <p className="video__description">{props.selectedVideo.description}</p>
-    </div>
+      <p className="video__description">{selectedVideo.description}</p>
+    </section>
   );
 };
 

@@ -7,7 +7,7 @@ import axios from "axios";
 const baseUrl = "https://project-2-api.herokuapp.com";
 const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
-const VideoList = (props) => {
+const VideoList = ({ selectedVideo }) => {
   const [videoList, setVideoList] = useState([]);
 
   const getVideoList = async () => {
@@ -20,11 +20,11 @@ const VideoList = (props) => {
   }, []);
 
   return (
-    <div className="videolist">
+    <section className="videolist">
       <h3 className="videolist__header">NEXT VIDEOS</h3>
       <div className="videolist__wrapper">
         {videoList
-          .filter((video) => video.id !== props.selectedVideo.id)
+          .filter((video) => video.id !== selectedVideo.id)
           .map((video) => {
             return (
               <Link
@@ -32,16 +32,12 @@ const VideoList = (props) => {
                 to={`/${video.id}`}
                 className="videolist__child"
               >
-                <VideoListCard
-                  key={video.id}
-                  changeVideo={props.changeVideo}
-                  video={video}
-                />
+                <VideoListCard key={video.id} video={video} />
               </Link>
             );
           })}
       </div>
-    </div>
+    </section>
   );
 };
 

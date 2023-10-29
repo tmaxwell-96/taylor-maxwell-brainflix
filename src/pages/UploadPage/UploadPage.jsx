@@ -18,9 +18,6 @@ const UploadPage = () => {
     setDescription(event.target.value);
   };
 
-  console.log(title);
-  console.log(description);
-
   const isFormValid = () => {
     if (!title || !description) {
       return false;
@@ -39,8 +36,6 @@ const UploadPage = () => {
       navigate("/");
     } else {
       alert("Please fill form fields");
-      console.log(title);
-      console.log(description);
     }
   };
   return (
@@ -58,7 +53,9 @@ const UploadPage = () => {
             />
           </div>
           <div className="uploadform__inputs">
-            <label className="uploadform__label">TITLE YOUR VIDEO </label>
+            <label htmlFor="videoTitle" className="uploadform__label">
+              TITLE YOUR VIDEO{" "}
+            </label>
             <input
               className="uploadform__title"
               name="videoTitle"
@@ -68,7 +65,7 @@ const UploadPage = () => {
               onChange={handleChangeTitle}
             />
 
-            <label className="uploadform__label">
+            <label htmlFor="videoDescription" className="uploadform__label">
               ADD A VIDEO DESCRIPTION{" "}
             </label>
             <textarea
