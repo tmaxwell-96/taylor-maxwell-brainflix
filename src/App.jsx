@@ -3,6 +3,7 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import HomePage from "./pages/HomePage/HomePage";
 import UploadPage from "./pages/UploadPage/UploadPage";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/upload" element={<UploadPage />} />
         <Route path="/:videoId" element={<HomePage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

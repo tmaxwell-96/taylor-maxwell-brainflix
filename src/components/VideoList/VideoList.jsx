@@ -7,6 +7,9 @@ import axios from "axios";
 const baseUrl = "https://project-2-api.herokuapp.com";
 const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
+//Fetch videolist. Lowest possible parent instead being done on homepage.
+//--------------------------------------------------------
+
 const VideoList = ({ selectedVideo }) => {
   const [videoList, setVideoList] = useState([]);
 

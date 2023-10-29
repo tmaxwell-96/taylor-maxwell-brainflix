@@ -54,7 +54,7 @@ function HomePage() {
       };
 
       const postComment = async (newComment, dynamicUrl) => {
-        const post = await axios.post(
+        await axios.post(
           `${baseUrl}/videos/${dynamicUrl}/comments?api_key=${apiKey}`,
           newComment
         );
@@ -79,6 +79,30 @@ function HomePage() {
     }
   };
 
+  //Delete comments function
+  //----------------------------------------
+  const changeComment = async (event) => {
+    const deleteComment = async (commentId, dynamicUrl) => {
+      await axios.delete(
+        `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}?api_key=${apiKey}`
+      );
+    };
+    if (params.videoId) {
+      await deleteComment(event, params.videoId);
+      const response = await axios.get(
+        `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
+      );
+      setSpecificVideoDetails(response.data);
+    } else {
+      const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+      await deleteComment(event, response.data[0].id);
+      const detailResponse = await axios.get(
+        `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
+      );
+      setSpecificVideoDetails(detailResponse.data);
+    }
+  };
+
   return (
     <div>
       {specificVideoDetails.id && (
@@ -95,14 +119,12 @@ function HomePage() {
                 calculateTimeAgo={calculateTimeAgo}
                 selectedVideo={specificVideoDetails}
                 createComment={createComment}
+                changeComment={changeComment}
               />
             </div>
             <div>
               <div className="details__right">
-                <VideoList
-                  // videoDetailsSimple={videoList}
-                  selectedVideo={specificVideoDetails}
-                />
+                <VideoList selectedVideo={specificVideoDetails} />
               </div>
             </div>
           </div>

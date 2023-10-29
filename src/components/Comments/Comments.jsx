@@ -2,7 +2,12 @@ import "./Comments.scss";
 import CommentsForm from "../Form/CommentsForm";
 import Comment from "../Comment/Comment";
 
-const Comments = ({ selectedVideo, createComment, calculateTimeAgo }) => {
+const Comments = ({
+  selectedVideo,
+  createComment,
+  calculateTimeAgo,
+  changeComment,
+}) => {
   return (
     <section className="comments">
       <h3 className="comments__number">
@@ -20,6 +25,7 @@ const Comments = ({ selectedVideo, createComment, calculateTimeAgo }) => {
                 calculateTimeAgo={calculateTimeAgo}
                 key={comment.id}
                 comment={comment}
+                changeComment={changeComment}
               />
             );
           })}

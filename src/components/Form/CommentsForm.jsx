@@ -1,15 +1,54 @@
 import "./CommentsForm.scss";
 import addCommentIcon from "../../assets/images/Icons/add_comment.svg";
+import { useState } from "react";
 
-// Added just to prevent page refresh if click form button
 const CommentsForm = ({ createComment }) => {
-  const form = document.querySelector(".comments-form");
+  // State variables for form validation
+  //-----------------------------------------
+  const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+
+  // use submitted state to only apply error class after submission
+  //-----------------------------------------
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+    setSubmitted(false);
+  };
+
+  const handleCommentChange = (event) => {
+    setComment(event.target.value);
+    setSubmitted(false);
+  };
+
+  const isNameValid = () => {
+    if (name) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const isCommentValid = () => {
+    if (comment) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const handleSubmission = (event) => {
     event.preventDefault();
 
+    if (!isNameValid() || !isCommentValid()) {
+      setSubmitted(true);
+      return;
+    }
+
     createComment(event);
-    form.reset();
+    setName("");
+    setComment("");
   };
 
   return (
@@ -20,16 +59,19 @@ const CommentsForm = ({ createComment }) => {
 
       <div className="comments-form__right">
         <div className="comments-form__comment-wrapper">
-          {" "}
           <label htmlFor="comments-form__name" className="comments-form__label">
             NAME
-          </label>{" "}
+          </label>
           <input
-            className="comments-form__name"
+            className={`comments-form__name ${
+              submitted && !isNameValid() ? "comments-form__name--error" : ""
+            }`}
             type="text"
             name="commentFormName"
             id="comments-form__name"
-            placeholder="Enter Your Name"
+            placeholder={"Enter Your Name"}
+            onChange={handleNameChange}
+            value={name}
           />
           <label
             htmlFor="comments-form__comment"
@@ -39,10 +81,16 @@ const CommentsForm = ({ createComment }) => {
             JOIN THE CONVERSATION
           </label>
           <textarea
-            className="comments-form__comment"
+            className={`comments-form__comment ${
+              submitted && !isCommentValid()
+                ? "comments-form__comment--error"
+                : ""
+            }`}
             name="commentFormText"
             id="comments-form__comment"
             placeholder="Add a New Comment"
+            onChange={handleCommentChange}
+            value={comment}
           ></textarea>
         </div>
 
