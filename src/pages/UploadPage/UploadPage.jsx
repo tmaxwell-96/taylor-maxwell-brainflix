@@ -1,21 +1,27 @@
 import "./UploadPage.scss";
 import thumbnail from "../../assets/images/Upload-video-preview.jpg";
 import uploadIcon from "../../assets/images/Icons/upload.svg";
+import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+const baseUrl = "http://localhost:8080";
 
 const UploadPage = () => {
   // State variables and eventchange functions
   //--------------------------------
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChangeTitle = (event) => {
     setTitle(event.target.value);
+    setSubmitted(false);
   };
 
   const handleChangeDescription = (event) => {
     setDescription(event.target.value);
+    setSubmitted(false);
   };
 
   const isFormValid = () => {
@@ -29,9 +35,17 @@ const UploadPage = () => {
   // Navigation and alert
   //--------------------------------
   const navigate = useNavigate();
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
     if (isFormValid()) {
+      await axios.post(`${baseUrl}/videos/upload`, {
+        title: title,
+        description: description,
+      });
+      setSubmitted(true);
+      setTitle("");
+      setDescription("");
+
       alert("Thank you for submitting! Now returning to home page.");
       navigate("/");
     } else {
@@ -57,7 +71,9 @@ const UploadPage = () => {
               TITLE YOUR VIDEO{" "}
             </label>
             <input
-              className="uploadform__title"
+              className={`uploadform__title ${
+                submitted && !isFormValid() ? "uploadform__title-error" : ""
+              }`}
               name="videoTitle"
               type="text"
               placeholder="Add a title to your video"
@@ -69,7 +85,11 @@ const UploadPage = () => {
               ADD A VIDEO DESCRIPTION{" "}
             </label>
             <textarea
-              className="uploadform__description"
+              className={`uploadform__description ${
+                submitted && !isFormValid()
+                  ? "uploadform__description-error"
+                  : ""
+              }`}
               type="text"
               name="videoDescription"
               placeholder="Add a description to your video"

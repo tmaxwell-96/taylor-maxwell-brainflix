@@ -71,6 +71,10 @@
       font-family: "Avenir", Verdana, sans-serif;
       padding: 0.5rem;
       font-size: 0.8125rem;
+      &--error,
+      &--error {
+        border: 1px solid $brainflix-error-color;
+      }
       &::placeholder {
         color: black;
       }

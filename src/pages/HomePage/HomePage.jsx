@@ -8,8 +8,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { calculateTimeAgo } from "../../functions/functions";
 
-const baseUrl = "https://project-2-api.herokuapp.com";
-const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
+const baseUrl = "http://localhost:8080";
+// const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
 function HomePage() {
   const params = useParams();
@@ -24,15 +24,13 @@ function HomePage() {
       const getVideoDetails = async () => {
         if (params.videoId) {
           const response = await axios.get(
-            `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
+            `${baseUrl}/videos/${params.videoId}`
           );
           setSpecificVideoDetails(response.data);
         } else {
-          const response = await axios.get(
-            `${baseUrl}/videos?api_key=${apiKey}`
-          );
+          const response = await axios.get(`${baseUrl}/videos`);
           const detailResponse = await axios.get(
-            `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
+            `${baseUrl}/videos/${response.data[0].id}`
           );
           setSpecificVideoDetails(detailResponse.data);
         }
@@ -43,65 +41,65 @@ function HomePage() {
     }
   }, [params.videoId]);
 
-  //Post comments function
+  //Post comments function. Commented out for now to not break.
   //----------------------------------------
 
-  const createComment = async (event) => {
-    try {
-      const newComment = {
-        name: event.target.commentFormName.value,
-        comment: event.target.commentFormText.value,
-      };
+  // const createComment = async (event) => {
+  //   try {
+  //     const newComment = {
+  //       name: event.target.commentFormName.value,
+  //       comment: event.target.commentFormText.value,
+  //     };
 
-      const postComment = async (newComment, dynamicUrl) => {
-        await axios.post(
-          `${baseUrl}/videos/${dynamicUrl}/comments?api_key=${apiKey}`,
-          newComment
-        );
-      };
-      if (params.videoId) {
-        await postComment(newComment, params.videoId);
-        const response = await axios.get(
-          `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
-        );
-        setSpecificVideoDetails(response.data);
-      } else {
-        const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-        await postComment(newComment, response.data[0].id);
+  //     const postComment = async (newComment, dynamicUrl) => {
+  //       await axios.post(
+  //         `${baseUrl}/videos/${dynamicUrl}/comments?api_key=${apiKey}`,
+  //         newComment
+  //       );
+  //     };
+  //     if (params.videoId) {
+  //       await postComment(newComment, params.videoId);
+  //       const response = await axios.get(
+  //         `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
+  //       );
+  //       setSpecificVideoDetails(response.data);
+  //     } else {
+  //       const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+  //       await postComment(newComment, response.data[0].id);
 
-        const detailResponse = await axios.get(
-          `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
-        );
-        setSpecificVideoDetails(detailResponse.data);
-      }
-    } catch {
-      alert("There is an issue reaching the server, please try again later");
-    }
-  };
+  //       const detailResponse = await axios.get(
+  //         `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
+  //       );
+  //       setSpecificVideoDetails(detailResponse.data);
+  //     }
+  //   } catch {
+  //     alert("There is an issue reaching the server, please try again later");
+  //   }
+  // };
 
-  //Delete comments function
+  //Delete comments function. Comment out for now to not break
   //----------------------------------------
-  const changeComment = async (event) => {
-    const deleteComment = async (commentId, dynamicUrl) => {
-      await axios.delete(
-        `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}?api_key=${apiKey}`
-      );
-    };
-    if (params.videoId) {
-      await deleteComment(event, params.videoId);
-      const response = await axios.get(
-        `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
-      );
-      setSpecificVideoDetails(response.data);
-    } else {
-      const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-      await deleteComment(event, response.data[0].id);
-      const detailResponse = await axios.get(
-        `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
-      );
-      setSpecificVideoDetails(detailResponse.data);
-    }
-  };
+  // const changeComment = async (event) => {
+  //   const deleteComment = async (commentId, dynamicUrl) => {
+  //     await axios.delete(
+  //       `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}?api_key=${apiKey}`
+  //     );
+  //   };
+  //   if (params.videoId) {
+  //     await deleteComment(event, params.videoId);
+  //     const response = await axios.get(
+  //       `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
+  //     );
+  //     setSpecificVideoDetails(response.data);
+  //   } else {
+  //     const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
+  //     await deleteComment(event, response.data[0].id);
+  //     const detailResponse = await axios.get(
+  //       `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
+  //     );
+  //     setSpecificVideoDetails(detailResponse.data);
+  //   }
+  // };
 
   return (
     <div>
@@ -118,8 +116,8 @@ function HomePage() {
               <Comments
                 calculateTimeAgo={calculateTimeAgo}
                 selectedVideo={specificVideoDetails}
-                createComment={createComment}
-                changeComment={changeComment}
+                // createComment={createComment}
+                // changeComment={changeComment}
               />
             </div>
             <div>

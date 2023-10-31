@@ -108,10 +108,7 @@
     &::placeholder {
       color: black;
     }
-    &:focus {
-      outline: none;
-      border: 1px solid $brainflix-primary-cta;
-    }
+
     @include tablet {
       min-width: 13rem;
       height: 3rem;
@@ -119,7 +116,7 @@
     }
     &:focus {
       outline: none;
-      border: 1px solid black;
+      border: 1px solid $brainflix-primary-cta;
     }
 
     &-wrapper {

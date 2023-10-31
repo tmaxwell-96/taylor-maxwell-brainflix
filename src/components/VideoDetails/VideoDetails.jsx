@@ -10,9 +10,7 @@ const VideoDetails = ({ selectedVideo, calculateTimeAgo }) => {
         <div className="video__container-left">
           <h3 className="video__channel">By {selectedVideo.channel}</h3>
           <p className="video__date">
-            {calculateTimeAgo(
-              new Date(selectedVideo.timestamp).toLocaleDateString("en-US")
-            )}
+            {calculateTimeAgo(new Date(selectedVideo.timestamp))}
           </p>
         </div>
         <div className="video__container-right">
