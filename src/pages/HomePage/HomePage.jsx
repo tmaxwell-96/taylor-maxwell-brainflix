@@ -44,38 +44,36 @@ function HomePage() {
   //Post comments function. Commented out for now to not break.
   //----------------------------------------
 
-  // const createComment = async (event) => {
-  //   try {
-  //     const newComment = {
-  //       name: event.target.commentFormName.value,
-  //       comment: event.target.commentFormText.value,
-  //     };
+  const createComment = async (event) => {
+    try {
+      const newComment = {
+        name: event.target.commentFormName.value,
+        comment: event.target.commentFormText.value,
+      };
 
-  //     const postComment = async (newComment, dynamicUrl) => {
-  //       await axios.post(
-  //         `${baseUrl}/videos/${dynamicUrl}/comments?api_key=${apiKey}`,
-  //         newComment
-  //       );
-  //     };
-  //     if (params.videoId) {
-  //       await postComment(newComment, params.videoId);
-  //       const response = await axios.get(
-  //         `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
-  //       );
-  //       setSpecificVideoDetails(response.data);
-  //     } else {
-  //       const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-  //       await postComment(newComment, response.data[0].id);
+      const postComment = async (newComment, dynamicUrl) => {
+        await axios.post(
+          `${baseUrl}/videos/${dynamicUrl}/comments`,
+          newComment
+        );
+      };
+      if (params.videoId) {
+        await postComment(newComment, params.videoId);
+        const response = await axios.get(`${baseUrl}/videos/${params.videoId}`);
+        setSpecificVideoDetails(response.data);
+      } else {
+        const response = await axios.get(`${baseUrl}/videos`);
+        await postComment(newComment, response.data[0].id);
 
-  //       const detailResponse = await axios.get(
-  //         `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
-  //       );
-  //       setSpecificVideoDetails(detailResponse.data);
-  //     }
-  //   } catch {
-  //     alert("There is an issue reaching the server, please try again later");
-  //   }
-  // };
+        const detailResponse = await axios.get(
+          `${baseUrl}/videos/${response.data[0].id}`
+        );
+        setSpecificVideoDetails(detailResponse.data);
+      }
+    } catch {
+      alert("There is an issue reaching the server, please try again later");
+    }
+  };
 
   //Delete comments function. Comment out for now to not break
   //----------------------------------------
@@ -116,7 +114,7 @@ function HomePage() {
               <Comments
                 calculateTimeAgo={calculateTimeAgo}
                 selectedVideo={specificVideoDetails}
-                // createComment={createComment}
+                createComment={createComment}
                 // changeComment={changeComment}
               />
             </div>
