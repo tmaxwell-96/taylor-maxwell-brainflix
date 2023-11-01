@@ -77,27 +77,25 @@ function HomePage() {
 
   //Delete comments function. Comment out for now to not break
   //----------------------------------------
-  // const changeComment = async (event) => {
-  //   const deleteComment = async (commentId, dynamicUrl) => {
-  //     await axios.delete(
-  //       `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}?api_key=${apiKey}`
-  //     );
-  //   };
-  //   if (params.videoId) {
-  //     await deleteComment(event, params.videoId);
-  //     const response = await axios.get(
-  //       `${baseUrl}/videos/${params.videoId}?api_key=${apiKey}`
-  //     );
-  //     setSpecificVideoDetails(response.data);
-  //   } else {
-  //     const response = await axios.get(`${baseUrl}/videos?api_key=${apiKey}`);
-  //     await deleteComment(event, response.data[0].id);
-  //     const detailResponse = await axios.get(
-  //       `${baseUrl}/videos/${response.data[0].id}?api_key=${apiKey}`
-  //     );
-  //     setSpecificVideoDetails(detailResponse.data);
-  //   }
-  // };
+  const changeComment = async (event) => {
+    const deleteComment = async (commentId, dynamicUrl) => {
+      await axios.delete(
+        `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}`
+      );
+    };
+    if (params.videoId) {
+      await deleteComment(event, params.videoId);
+      const response = await axios.get(`${baseUrl}/videos/${params.videoId}`);
+      setSpecificVideoDetails(response.data);
+    } else {
+      const response = await axios.get(`${baseUrl}/videos`);
+      await deleteComment(event, response.data[0].id);
+      const detailResponse = await axios.get(
+        `${baseUrl}/videos/${response.data[0].id}`
+      );
+      setSpecificVideoDetails(detailResponse.data);
+    }
+  };
 
   return (
     <div>
@@ -115,7 +113,7 @@ function HomePage() {
                 calculateTimeAgo={calculateTimeAgo}
                 selectedVideo={specificVideoDetails}
                 createComment={createComment}
-                // changeComment={changeComment}
+                changeComment={changeComment}
               />
             </div>
             <div>
