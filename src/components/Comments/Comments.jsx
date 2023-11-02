@@ -7,6 +7,7 @@ const Comments = ({
   createComment,
   calculateTimeAgo,
   changeComment,
+  commentsLike,
 }) => {
   return (
     <section className="comments">
@@ -26,6 +27,7 @@ const Comments = ({
                 key={comment.id}
                 comment={comment}
                 changeComment={changeComment}
+                commentsLike={commentsLike}
               />
             );
           })}

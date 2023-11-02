@@ -1,6 +1,11 @@
 import "./Comment.scss";
 
-const Comment = ({ comment, calculateTimeAgo, changeComment }) => {
+const Comment = ({
+  comment,
+  calculateTimeAgo,
+  changeComment,
+  commentsLike,
+}) => {
   return (
     <div className="comment">
       <div className="comment__left">
@@ -16,6 +21,13 @@ const Comment = ({ comment, calculateTimeAgo, changeComment }) => {
 
         <p className="comment__text">{comment.comment}</p>
         <div className="comment__right-bottom">
+          <p className="comment__likes">{`Likes: ${comment.likes}`}</p>
+          <button
+            onClick={() => commentsLike(comment.id)}
+            className="comment__like"
+          >
+            Like
+          </button>
           <button
             onClick={() => changeComment(comment.id)}
             className="comment__delete"

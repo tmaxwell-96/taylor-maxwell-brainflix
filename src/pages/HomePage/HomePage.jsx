@@ -75,7 +75,7 @@ function HomePage() {
     }
   };
 
-  //Delete comments function. Comment out for now to not break
+  //Delete comments function
   //----------------------------------------
   const changeComment = async (event) => {
     const deleteComment = async (commentId, dynamicUrl) => {
@@ -90,6 +90,26 @@ function HomePage() {
     } else {
       const response = await axios.get(`${baseUrl}/videos`);
       await deleteComment(event, response.data[0].id);
+      const detailResponse = await axios.get(
+        `${baseUrl}/videos/${response.data[0].id}`
+      );
+      setSpecificVideoDetails(detailResponse.data);
+    }
+  };
+
+  //Like comments function
+  //----------------------------------------
+  const commentsLike = async (event) => {
+    const likeComment = async (commentId, dynamicUrl) => {
+      await axios.put(`${baseUrl}/videos/${dynamicUrl}/comments/${commentId}`);
+    };
+    if (params.videoId) {
+      await likeComment(event, params.videoId);
+      const response = await axios.get(`${baseUrl}/videos/${params.videoId}`);
+      setSpecificVideoDetails(response.data);
+    } else {
+      const response = await axios.get(`${baseUrl}/videos`);
+      await likeComment(event, response.data[0].id);
       const detailResponse = await axios.get(
         `${baseUrl}/videos/${response.data[0].id}`
       );
@@ -114,6 +134,7 @@ function HomePage() {
                 selectedVideo={specificVideoDetails}
                 createComment={createComment}
                 changeComment={changeComment}
+                commentsLike={commentsLike}
               />
             </div>
             <div>
