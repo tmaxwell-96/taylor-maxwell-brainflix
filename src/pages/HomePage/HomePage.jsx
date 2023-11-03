@@ -97,7 +97,7 @@ function HomePage() {
     }
   };
 
-  //Like comments function
+  //Like comments function - working now
   //----------------------------------------
   const commentsLike = async (event) => {
     const likeComment = async (commentId, dynamicUrl) => {
