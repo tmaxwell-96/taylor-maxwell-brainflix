@@ -8,10 +8,12 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { calculateTimeAgo } from "../../functions/functions";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = process.env.REACT_APP_BASE_URL;
+
 // const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
 function HomePage() {
+  console.log(baseUrl);
   const params = useParams();
 
   //setting state to get the videolist

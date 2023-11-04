@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 // const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
 //Fetch videolist. Lowest possible parent instead being done on homepage.

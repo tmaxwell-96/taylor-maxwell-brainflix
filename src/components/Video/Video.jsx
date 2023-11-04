@@ -1,6 +1,6 @@
 import "./Video.scss";
 
-const baseUrl = "http://localhost:8080";
+const baseUrl = process.env.REACT_APP_BASE_URL;
 const Video = ({ selectedVideo }) => {
   const videoImage = selectedVideo.image;
   return (
