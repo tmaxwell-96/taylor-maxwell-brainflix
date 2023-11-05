@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
-// const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
 
 //Fetch videolist. Lowest possible parent instead being done on homepage.
 //--------------------------------------------------------
@@ -14,12 +13,17 @@ const VideoList = ({ selectedVideo }) => {
   const [videoList, setVideoList] = useState([]);
 
   const getVideoList = async () => {
-    const response = await axios.get(`${baseUrl}/videos`);
-    setVideoList(response.data);
+    try {
+      const response = await axios.get(`${baseUrl}/videos`);
+      setVideoList(response.data);
+    } catch {
+      alert("Error communicating with server, please try again later");
+    }
   };
 
   useEffect(() => {
     getVideoList();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

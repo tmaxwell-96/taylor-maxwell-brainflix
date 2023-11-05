@@ -10,10 +10,7 @@ import { calculateTimeAgo } from "../../functions/functions";
 
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
-// const apiKey = "c1dad333-eff5-4963-8a23-1c07713aef66";
-
 function HomePage() {
-  console.log(baseUrl);
   const params = useParams();
 
   //setting state to get the videolist
@@ -38,6 +35,7 @@ function HomePage() {
         }
       };
       getVideoDetails();
+      window.scrollTo(0, 0);
     } catch {
       alert("There is an issue reaching the server, please try again later");
     }
@@ -54,10 +52,14 @@ function HomePage() {
       };
 
       const postComment = async (newComment, dynamicUrl) => {
-        await axios.post(
-          `${baseUrl}/videos/${dynamicUrl}/comments`,
-          newComment
-        );
+        try {
+          await axios.post(
+            `${baseUrl}/videos/${dynamicUrl}/comments`,
+            newComment
+          );
+        } catch {
+          alert("Error communicating with server, please try again later");
+        }
       };
       if (params.videoId) {
         await postComment(newComment, params.videoId);
@@ -81,9 +83,13 @@ function HomePage() {
   //----------------------------------------
   const changeComment = async (event) => {
     const deleteComment = async (commentId, dynamicUrl) => {
-      await axios.delete(
-        `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}`
-      );
+      try {
+        await axios.delete(
+          `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}`
+        );
+      } catch {
+        alert("Error communicating with server, please try again later");
+      }
     };
     if (params.videoId) {
       await deleteComment(event, params.videoId);
@@ -99,11 +105,17 @@ function HomePage() {
     }
   };
 
-  //Like comments function - working now
+  //Like comments function
   //----------------------------------------
   const commentsLike = async (event) => {
     const likeComment = async (commentId, dynamicUrl) => {
-      await axios.put(`${baseUrl}/videos/${dynamicUrl}/comments/${commentId}`);
+      try {
+        await axios.put(
+          `${baseUrl}/videos/${dynamicUrl}/comments/${commentId}`
+        );
+      } catch {
+        alert("Error communicating with server, please try again later");
+      }
     };
     if (params.videoId) {
       await likeComment(event, params.videoId);

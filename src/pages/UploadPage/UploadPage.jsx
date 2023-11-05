@@ -37,11 +37,17 @@ const UploadPage = () => {
   const navigate = useNavigate();
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    setSubmitted(true);
     if (isFormValid()) {
-      await axios.post(`${baseUrl}/videos/upload`, {
-        title: title,
-        description: description,
-      });
+      try {
+        await axios.post(`${baseUrl}/videos/upload`, {
+          title: title,
+          description: description,
+        });
+      } catch {
+        alert("Error communicating with server, please try again later");
+      }
+
       setSubmitted(true);
       setTitle("");
       setDescription("");
@@ -72,7 +78,7 @@ const UploadPage = () => {
             </label>
             <input
               className={`uploadform__title ${
-                submitted && !isFormValid() ? "uploadform__title-error" : ""
+                submitted && !title ? "uploadform__title--error" : ""
               }`}
               name="videoTitle"
               type="text"
@@ -86,8 +92,8 @@ const UploadPage = () => {
             </label>
             <textarea
               className={`uploadform__description ${
-                submitted && !isFormValid()
-                  ? "uploadform__description-error"
+                submitted && !description
+                  ? "uploadform__description--error"
                   : ""
               }`}
               type="text"
@@ -100,9 +106,12 @@ const UploadPage = () => {
         </div>
 
         <div className="uploadform__bottom">
-          <h3 className="uploadform__cancel uploadform__cancel--wide">
-            CANCEL
-          </h3>
+          <Link to="/">
+            <h3 className="uploadform__cancel uploadform__cancel--wide">
+              CANCEL
+            </h3>
+          </Link>
+
           <div className="uploadform__buttonwrapper">
             <div className="uploadform__button-overlay">
               <img

@@ -8,7 +8,7 @@ const VideoListCard = ({ video }) => {
       <div className="videolist-card__image-container">
         <img
           className="videolist-card__image"
-          src={`${baseUrl}/${video.image}`}
+          src={`${baseUrl}/images/${video.image}`}
           alt={video.title}
         />
       </div>
